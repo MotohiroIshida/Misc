@@ -1,7 +1,7 @@
 
 library(rvest)
 
-baseurl <- "http://tabelog.com/osaka/A2701/A270201/27064826/dtlrvwlst/"
+baseurl <- "http://tabelog.com/osaka/???/???/???/dtlrvwlst/"
 browseURL(baseurl)
 
 pages <- 1:2#サイトのページ数
