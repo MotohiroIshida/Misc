@@ -83,7 +83,10 @@ NROW(women)#;write(women$texts, file = "cat/women.txt")
 contents %>% filter (str_detect(cat, "男性")) -> men#;write(men$texts, file = "cat/men.txt")
 
 ## 男女に分けてクチコミを解析
-library(RMeCab)
+setwd("~/Dropbox/R/API")
+
+library(RMeCab) ; require(dplyr) ;require (magrittr)
+                                                   
 cats <- docDF("cat", type = 1, pos = c("名詞","形容詞","動詞"))
 
 # library(dplyr) ; library(magrittr)
@@ -106,6 +109,10 @@ cats2 <- cats2 %>% select(men.txt,women.txt)
 ## 主成分分析
 cats.pca <- princomp(cats2)
 biplot(cats.pca, cex = 1.3)
+
+library(ggfortify)
+
+autoplot(cats.pca,data= cats2,label = TRUE,loadings = TRUE,  loadings.label = TRUE, loadings.label.size  = 8,label.fontface = 6, loadings.label.lineheight = 0)
 
 plot(cats.pca$scores, type = "n")
 text(cats.pca$scores, rownames(cats.pca$scores), cex = 1.4 )
